@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChildren, QueryList, OnDestroy} from '@angular/core';
+import { Component, OnInit, ViewChildren, QueryList, OnDestroy } from '@angular/core';
 import { ApiService } from '../../../services/api.service';
 import { GlobalService } from '../../../services/global.service';
 import { AuthService } from '../../../services/auth.service';
@@ -197,12 +197,12 @@ export class TeamlistComponent implements OnInit, OnDestroy {
    * @param endpointsService  EndpointsService Injection.
    */
   constructor(private apiService: ApiService,
-              private authService: AuthService,
-              private globalService: GlobalService,
-              private router: Router,
-              private route: ActivatedRoute,
-              private challengeService: ChallengeService,
-              private endpointsService: EndpointsService) { }
+    private authService: AuthService,
+    private globalService: GlobalService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private challengeService: ChallengeService,
+    private endpointsService: EndpointsService) { }
 
   /**
    * Component on initialized.
@@ -350,7 +350,7 @@ export class TeamlistComponent implements OnInit, OnDestroy {
         this.globalService.stopLoader();
         SELF.globalService.handleApiError(err, false);
       },
-      () => {}
+      () => { }
     );
   }
 
@@ -362,21 +362,21 @@ export class TeamlistComponent implements OnInit, OnDestroy {
     const deleteTeam = (e) => {
       SELF.apiCall = () => {
         SELF.apiService.deleteUrl(SELF.deleteTeamsPath + '/' + e).subscribe(
-        data => {
-          // Success Message in data.message
-          SELF.globalService.showToast('success', 'You were removed from the team!', 5);
-          SELF.fetchMyTeams(SELF.fetchTeamsPath);
-          SELF.selectedTeam = null;
-        },
-        err => {
-          SELF.globalService.handleApiError(err);
-        },
-        () => {}
+          data => {
+            // Success Message in data.message
+            SELF.globalService.showToast('success', 'You removed the team!', 5);
+            SELF.fetchMyTeams(SELF.fetchTeamsPath);
+            SELF.selectedTeam = null;
+          },
+          err => {
+            SELF.globalService.handleApiError(err);
+          },
+          () => { }
         );
       };
       const PARAMS = {
-        title: 'Would you like to remove yourself ?',
-        content: 'Note: This action will remove you from the team.',
+        title: 'Would you like to remove the team ?',
+        content: 'Note: This action will remove the team.',
         confirm: 'Yes',
         deny: 'Cancel',
         confirmCallback: SELF.apiCall
@@ -396,16 +396,16 @@ export class TeamlistComponent implements OnInit, OnDestroy {
       SELF.apiCall = (params) => {
         const BODY = JSON.stringify(params);
         SELF.apiService.patchUrl(SELF.endpointsService.participantTeamURL(team), BODY).subscribe(
-        data => {
-          // Success Message in data.message
-          SELF.globalService.showToast('success', 'Team Updated', 5);
-          SELF.fetchMyTeams(SELF.fetchTeamsPath);
-          SELF.selectedTeam = null;
-        },
-        err => {
-          SELF.globalService.handleApiError(err);
-        },
-        () => {}
+          data => {
+            // Success Message in data.message
+            SELF.globalService.showToast('success', 'Team Updated', 5);
+            SELF.fetchMyTeams(SELF.fetchTeamsPath);
+            SELF.selectedTeam = null;
+          },
+          err => {
+            SELF.globalService.handleApiError(err);
+          },
+          () => { }
         );
       };
       const PARAMS = {
@@ -448,16 +448,16 @@ export class TeamlistComponent implements OnInit, OnDestroy {
           apiPath = SELF.endpointsService.hostTeamInviteURL(team);
         }
         SELF.apiService.postUrl(apiPath, BODY).subscribe(
-        data => {
-          // Success Message in data.message
-          SELF.globalService.showToast('success', 'User added to the team successfully', 5);
-          SELF.fetchMyTeams(SELF.fetchTeamsPath);
-          SELF.selectedTeam = null;
-        },
-        err => {
-          SELF.globalService.handleApiError(err, true);
-        },
-        () => {}
+          data => {
+            // Success Message in data.message
+            SELF.globalService.showToast('success', 'User added to the team successfully', 5);
+            SELF.fetchMyTeams(SELF.fetchTeamsPath);
+            SELF.selectedTeam = null;
+          },
+          err => {
+            SELF.globalService.handleApiError(err, true);
+          },
+          () => { }
         );
       };
       const PARAMS = {
@@ -527,7 +527,7 @@ export class TeamlistComponent implements OnInit, OnDestroy {
           this.globalService.showToast('error', err.error.team_name, 5);
           this.globalService.handleFormError(this.components, err);
         },
-        () => {}
+        () => { }
       );
     } else if (this.create_team['team_name'] === '') {
       this.isTeamNameRequired = true;
